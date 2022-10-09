@@ -41,6 +41,6 @@ mod perf;
 criterion_group!(
     name = poly_verify;
     config = Criterion::default().with_profiler(perf::FlamegraphProfiler::new(100));
-    targets = bench_poly_verify<16>, bench_poly_verify<64>, bench_poly_verify<128>, bench_poly_verify<256>
+    targets = bench_poly_verify<1024>
 );
 criterion_main!(poly_verify);

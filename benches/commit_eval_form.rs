@@ -25,12 +25,12 @@ fn bench_commit<const NUM_COEFFS: usize>(c: &mut Criterion) {
     let params = test_setup(&mut rng, NUM_COEFFS);
     let lagrange_basis = compute_lagrange_basis(&params);
 
-    let evals = random_evals(&mut rng, NUM_COEFFS);
-    let prover = KZGProverEvalForm::new(&params, lagrange_basis.0.as_slice());
 
     c.bench_function(
         format!("bench_commit_eval_form, degree {}", NUM_COEFFS - 1).as_str(),
         |b| {
+            let evals = random_evals(&mut rng, NUM_COEFFS);
+            let prover = KZGProverEvalForm::new(&params, lagrange_basis.0.as_slice());
             b.iter(|| {
                 prover.commit(black_box(&evals))
             })
@@ -43,6 +43,6 @@ mod perf;
 criterion_group!(
     name = commit;
     config = Criterion::default().with_profiler(perf::FlamegraphProfiler::new(100));
-    targets = bench_commit<16>, bench_commit<64>, bench_commit<128>, bench_commit<256>
+    targets = bench_commit<1024>
 );
 criterion_main!(commit);

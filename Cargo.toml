@@ -58,10 +58,10 @@ harness = false
 name = "verify_eval_coeff_form"
 harness = false
 
-[[bench]]
-name = "poly_arithmetic"
-harness = false
-
-[[bench]]
-name = "fft"
-harness = false
+#[[bench]]
+#name = "poly_arithmetic"
+#harness = false
+#
+#[[bench]]
+#name = "fft"
+#harness = false

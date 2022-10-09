@@ -49,6 +49,6 @@ mod perf;
 criterion_group!(
     name = verify_eval;
     config = Criterion::default().with_profiler(perf::FlamegraphProfiler::new(100));
-    targets = bench_verify_eval<16>, bench_verify_eval<64>, bench_verify_eval<128>, bench_verify_eval<256>
+    targets = bench_verify_eval<1024>
 );
 criterion_main!(verify_eval);
